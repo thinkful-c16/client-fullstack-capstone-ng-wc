@@ -2,7 +2,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 // import canvas from 'canvas';
 import cloud from 'd3-cloud';
-import './wordcloud.css';
+import './word-cloud.css';
 
 //dummy data- will be importing from store eventually
 const words = ["Hello", "world", "normally", "you", "want", "more", "words", "than", "this"]
