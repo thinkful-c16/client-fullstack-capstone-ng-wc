@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { canvas } from 'canvas';
-import Canvas from 'canvas';
+import canvas  from 'canvas';
+// import Canvas from 'canvas';
 import cloud from '../../../d3-cloud/index';
 
 //dummy data- will be importing from store eventually
