@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "canvas": "^1.6.9",
+    "d3-cloud": "^1.2.4",
+    "d3-dispatch": "^1.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
