@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { canvas } from 'canvas';
-import { cloud } from '../../../d3-cloud/index';
+import Canvas from 'canvas';
+import cloud from '../../../d3-cloud/index';
 
 //dummy data- will be importing from store eventually
 const words = ["Hello", "world", "normally", "you", "want", "more", "words", "than", "this"]
@@ -11,7 +12,7 @@ const words = ["Hello", "world", "normally", "you", "want", "more", "words", "th
 
 function end(words) { console.log(JSON.stringify(words)); } 
 
-export class Wordcloud extends React.Component {
+export default class Wordcloud extends React.Component {
     render(){
         const wordcloud = cloud().size([960, 500])
         .canvas(function() { return new Canvas(1, 1); })
