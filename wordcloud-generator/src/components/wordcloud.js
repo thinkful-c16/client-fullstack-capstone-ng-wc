@@ -2,6 +2,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 // import canvas from 'canvas';
 import cloud from 'd3-cloud';
+import './wordcloud.css';
 
 //dummy data- will be importing from store eventually
 const words = ["Hello", "world", "normally", "you", "want", "more", "words", "than", "this"]
@@ -15,7 +16,7 @@ export default class Wordcloud extends React.Component {
 
     componentDidMount() {
         console.log('here');
-        cloud().size([960, 500])
+        cloud()
         .canvas(() => this.canvas)
         .words(words)
         .fontSize(function(d) { return d.size; })
@@ -26,8 +27,7 @@ export default class Wordcloud extends React.Component {
 
     render(){
         return(
-            <canvas className='word-cloud' id='wordCloud' width='960' height='500' ref={(canvas) => {this.canvas = canvas}}>
-            </canvas>
+            <canvas ref={(canvas) => {this.canvas = canvas}}/>
         )
     }
 }
