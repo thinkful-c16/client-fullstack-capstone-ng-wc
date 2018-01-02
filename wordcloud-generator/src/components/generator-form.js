@@ -1,6 +1,8 @@
 import React from 'react';
 import './generator-form.css';
 
+import WordCloudOptions from './word-cloud-options';
+
 export default class generatorForm extends React.Component {
 
   render() {
@@ -27,6 +29,7 @@ export default class generatorForm extends React.Component {
             Generate Word Cloud
           </button>
         </div>
+        <WordCloudOptions />
       </form>
     );
   }

@@ -4,8 +4,9 @@ export default class WordCloudOptions extends React.Component {
 
   render() {
     return (
-      <form>
-      </form>
+      <div>
+        <p>Word Cloud Options go Here</p>
+      </div>
     );
   }
 }
