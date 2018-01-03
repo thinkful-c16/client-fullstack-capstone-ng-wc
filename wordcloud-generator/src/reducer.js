@@ -123,7 +123,8 @@ export const reducer = (state = initialState, action) => {
     })
   }
   if(action.type === DELETE_CLOUD_SUCCESS){
-    return Object.assign({}, state.activeCloud, {
+    return Object.assign({}, state, {
+      clouds: action.clouds
     })
   }
   if(action.type === DELETE_CLOUD_ERROR){

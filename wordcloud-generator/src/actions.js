@@ -81,9 +81,10 @@ export const deleteCloudRequest = () => ({
   type: DELETE_CLOUD_REQUEST
 })
 
-export const DELETE_CLOUD_SUCCESS = 'DELETE_CLOUD__SUCCESS';
-export const deleteCloudSuccess =  (id) => ({  
-  type: DELETE_CLOUD_SUCCESS
+export const DELETE_CLOUD_SUCCESS = 'DELETE_CLOUD_SUCCESS';
+export const deleteCloudSuccess =  (clouds) => ({  
+  type: DELETE_CLOUD_SUCCESS,
+  clouds
 });
 
 export const DELETE_CLOUD_ERROR = 'DELETE_CLOUD_ERROR';
