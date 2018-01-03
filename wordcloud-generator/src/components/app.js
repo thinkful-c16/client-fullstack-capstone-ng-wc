@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 
 import Header from './header';
 import HomeView from './home-view';
-import CloudView from './cloud-view';
+import CloudEdit from './cloud-edit';
+import CloudFocus from './cloud-focus';
 import LibraryView from './library-view';
 
 export function App(props) {
 
-  const view = props.view
+  const view = props.view;
 
   let page = null;
 
   if (view === 'library') {
     page = <LibraryView />
   } 
-  else if (view === 'cloud') {
-    page = <CloudView />
+  else if (view === 'cloudEdit') {
+    page = <CloudEdit />
+  }
+  else if (view === 'focus') {
+   page = <CloudFocus />  
   }
   else {
     page = <HomeView />

@@ -14,11 +14,6 @@ export default function TopNav(props) {
                       Library
                   </a>
               </li>
-              <li>
-                  <a href="#save" className="save">
-                      Save
-                  </a>
-              </li>
           </ul>
       </nav>
   );

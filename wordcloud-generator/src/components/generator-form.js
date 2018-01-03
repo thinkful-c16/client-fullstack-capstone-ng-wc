@@ -1,9 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './generator-form.css';
 
-export default class generatorForm extends React.Component {
+export class GeneratorForm extends React.Component {
 
   render() {
+
+    const view = this.props.view;
+
+    let button = null;
+
+    if (view === 'cloudEdit') {
+      button =
+              <div>
+                <button type="submit" name="submit" id="regenerateWordCloud" className="button">
+                    Regenerate Word Cloud
+                </button>
+                <button type="submit" name="submit" id="deleteWordCloud" className="button">
+                    Delete Word Cloud
+                </button>
+                <button type="submit" name="submit" id="saveWordCloud" className="button">
+                    Save to Library
+                </button>
+              </div>
+    } else {
+      button =
+              <div>
+                <button type="submit" name="submit" id="generateWordCloudButton" className="button">
+                Generate Word Cloud
+                </button>
+              </div>
+    }
+
     return (
       <form>
         <div>
@@ -18,14 +47,7 @@ export default class generatorForm extends React.Component {
           </textarea>
         </div>
         <div>
-          <button 
-            type="submit"
-            name="submit"
-            id="generateWordCloudButton" 
-            className="button"
-          >
-            Generate Word Cloud
-          </button>
+          {button}
         </div>
         <div>
           <label htmlFor="fontColor">Font Color:</label>
@@ -45,3 +67,9 @@ export default class generatorForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  view: state.view
+});
+
+export default connect(mapStateToProps)(GeneratorForm);
