@@ -42,6 +42,20 @@ export const reducer = (state = initialState, action) => {
       view: 'focus'
     })
   }
+  if(action.type === FETCH_SINGLE_CLOUD_SUCCESS){
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      activeCloud: action.activeCloud,
+      view: 'focus'
+    })
+  }
+  if(action.type === FETCH_SINGLE_CLOUD_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
+    })
+  }
   if(action.type === GENERATE_CLOUD){
     return Object.assign({}, state, {
       view: 'newCloud'
