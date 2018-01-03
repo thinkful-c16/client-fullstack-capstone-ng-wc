@@ -82,7 +82,7 @@ export const deleteCloudRequest = () => ({
 })
 
 export const DELETE_CLOUD_SUCCESS = 'DELETE_CLOUD__SUCCESS';
-export const deleteCloudSuccess =  (activeCloud) => ({  
+export const deleteCloudSuccess =  (id) => ({  
   type: DELETE_CLOUD_SUCCESS,
   activeCloud
 });
@@ -173,7 +173,7 @@ export const updateCloud = (id, title, words, font, color, upvotes, downvotes) =
       );
 }
 
-export const removeCloud = (activeCloud) => dispatch => {
+export const removeCloud = (id) => dispatch => {
   dispatch(generateCloudRequest());
   return fetch(`${API_BASE_URL}/clouds/:id`, {
     method: `DELETE`

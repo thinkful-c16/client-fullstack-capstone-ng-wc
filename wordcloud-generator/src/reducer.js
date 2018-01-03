@@ -106,5 +106,22 @@ export const reducer = (state = initialState, action) => {
       loading: false
     })
   }
+  if(action.type === DELETE_CLOUD_REQUEST){
+    return Object.assign({}, state, {
+      loading: false,
+      error: null,
+      view: 'library'
+    })
+  }
+  if(action.type === DELETE_CLOUD_SUCCESS){
+    return Object.assign({}, state.activeCloud, {
+    })
+  }
+  if(action.type === DELETE_CLOUD_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
+    })
+  }
   return state;
 };
