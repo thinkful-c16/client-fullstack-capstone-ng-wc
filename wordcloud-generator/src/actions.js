@@ -83,18 +83,22 @@ export const deleteCloudRequest = () => ({
 
 export const DELETE_CLOUD_SUCCESS = 'DELETE_CLOUD__SUCCESS';
 export const deleteCloudSuccess =  (id) => ({  
-  type: DELETE_CLOUD_SUCCESS,
-  activeCloud
+  type: DELETE_CLOUD_SUCCESS
 });
 
 export const DELETE_CLOUD_ERROR = 'DELETE_CLOUD_ERROR';
-export const updateCloudError = (error) => ({
+export const deleteCloudError = (error) => ({
   type: DELETE_CLOUD_ERROR,
   error
 })
 
+export const GO_HOME = 'GO_HOME';
+export const goHome = () => ({
+  type:GO_HOME
+})
+
 export const fetchClouds = () => dispatch => {
-  dispatch(fetchClouds());
+  dispatch(fetchCloudsRequest());
   return fetch(`${API_BASE_URL}/clouds`)
     .then(res => {
       if(!res.ok) {

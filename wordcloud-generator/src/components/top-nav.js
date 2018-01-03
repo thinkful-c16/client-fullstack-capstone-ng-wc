@@ -1,16 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function TopNav(props) {
-  return (
+import { goHome, fetchClouds} from '../actions';
+
+export function TopNav(props) {
+    
+    return (
       <nav>
           <ul className="nav">
               <li>
-                  <a href="#home" className="home">
+                  <a href="#home" className="home" onClick={() => props.dispatch(goHome())}>
                       Home
                   </a>
               </li>
               <li>
-                  <a href="#library" className="library">
+                  <a href="#library" className="library" onClick={() => props.dispatch(fetchClouds())}>
                       Library
                   </a>
               </li>
@@ -18,3 +22,5 @@ export default function TopNav(props) {
       </nav>
   );
 }
+
+export default connect() (TopNav);

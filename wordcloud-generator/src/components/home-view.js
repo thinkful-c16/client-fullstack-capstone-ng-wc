@@ -1,17 +1,26 @@
 import React from 'react';
-import GeneratorForm from './generator-form';
-import LibraryCarousel from './library-carousel';
+import { connect } from 'react-redux';
 
-export default function HomeView(props) {
+import GeneratorForm from './generator-form';
+// import LibraryCarousel from './library-carousel';
+
+import { fetchClouds } from '../actions';
+
+export function HomeView(props) {
   return (
     <section className="home-view">
       <GeneratorForm />
       <hr></hr>
-      <div className="home-carousel">
-        <LibraryCarousel />
-      </div>
       <br></br>
-      <a href="#library" className="library">Browse the Word Cloud Library</a>
+      <div>
+        <a href="#library" className="library" onClick={() => props.dispatch(fetchClouds())}>Browse the Word Cloud Library</a>
+      </div>
     </section>
   );
 }
+
+// <div className="home-carousel">
+// <LibraryCarousel />
+// </div>
+
+export default connect() (HomeView);

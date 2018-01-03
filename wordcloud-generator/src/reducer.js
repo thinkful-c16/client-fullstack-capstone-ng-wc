@@ -10,7 +10,11 @@ import {
   GENERATE_CLOUD_ERROR,
   UPDATE_CLOUD_REQUEST,
   UPDATE_CLOUD_SUCCESS,
-  UPDATE_CLOUD_ERROR
+  UPDATE_CLOUD_ERROR,
+  DELETE_CLOUD_REQUEST,
+  DELETE_CLOUD_SUCCESS,
+  DELETE_CLOUD_ERROR,
+  GO_HOME
   } from './actions';
 
 const initialState = {
@@ -22,6 +26,11 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
+  if(action.type === GO_HOME){
+    return Object.assign({}, state, {
+      view: 'home'
+    })
+  }
   if(action.type === FETCH_CLOUDS_REQUEST){
     return Object.assign({}, state, {
       loading: true,

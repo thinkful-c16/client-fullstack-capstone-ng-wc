@@ -1,8 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Slider from 'react-slick';
 
-export default class LibraryCarousel extends React.Component {
+export class LibraryCarousel extends React.Component {
   render() {
+
+    const clouds = this.props.clouds.map((cloud, index) => (
+        <a key={index} onClick={() => console.log('hello')}>
+          <div>
+            <span>
+              {cloud.title}
+            </span>
+          </div>
+        </a>
+      ));
+
     const settings = {
       dots: true,
       infinite: true,
@@ -13,13 +26,14 @@ export default class LibraryCarousel extends React.Component {
 
     return (
         <Slider {...settings}>
-          <div><h3>1</h3></div>
-          <div><h3>2</h3></div>
-          <div><h3>3</h3></div>
-          <div><h3>4</h3></div>
-          <div><h3>5</h3></div>
-          <div><h3>6</h3></div>
+          {clouds}
         </Slider>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  clouds: state.clouds
+});
+
+export default connect(mapStateToProps) (LibraryCarousel);
