@@ -7,7 +7,10 @@ import {
   FETCH_SINGLE_CLOUD_ERROR,
   GENERATE_CLOUD_REQUEST,
   GENERATE_CLOUD_SUCCESS,
-  GENERATE_CLOUD_ERROR
+  GENERATE_CLOUD_ERROR,
+  UPDATE_CLOUD_REQUEST,
+  UPDATE_CLOUD_SUCCESS,
+  UPDATE_CLOUD_ERROR
   } from './actions';
 
 const initialState = {
@@ -76,6 +79,28 @@ export const reducer = (state = initialState, action) => {
     })
   }
   if(action.type === GENERATE_CLOUD_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
+    })
+  }
+  if(action.type === UPDATE_CLOUD_REQUEST){
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    })
+  }
+  if(action.type === UPDATE_CLOUD_SUCCESS){
+    return Object.assign({}, state.activeCloud, {
+      title: action.title,
+      words: action.words,
+      font: action.font,
+      color: action.color,
+      upvotes: action.upvotes,
+      downvotes: action.downvotes
+    })
+  }
+  if(action.type === UPDATE_CLOUD_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false

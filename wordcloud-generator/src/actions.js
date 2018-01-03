@@ -54,6 +54,45 @@ export const generateCloudError = (error) => ({
   error
 })
 
+export const UPDATE_CLOUD_REQUEST = 'UPDATE_CLOUD_REQUEST';
+export const updateCloudRequest = () => ({
+  type: UPDATE_CLOUD_REQUEST
+})
+
+export const UPDATE_CLOUD_SUCCESS = 'UPDATE_CLOUD_SUCCESS';
+export const updateCloudSuccess =  (title, words, font, color, upvotes, downvotes) => ({  
+  type: UPDATE_CLOUD_SUCCESS,
+  title,
+  words,
+  font,
+  color,
+  upvotes,
+  downvotes
+});
+
+export const UPDATE_CLOUD_ERROR = 'UPDATE_CLOUD_ERROR';
+export const updateCloudError = (error) => ({
+  type: UPDATE_CLOUD_ERROR,
+  error
+})
+
+export const DELETE_CLOUD_REQUEST = 'DELETE_CLOUD_REQUEST';
+export const deleteCloudRequest = () => ({
+  type: DELETE_CLOUD_REQUEST
+})
+
+export const DELETE_CLOUD_SUCCESS = 'DELETE_CLOUD__SUCCESS';
+export const deleteCloudSuccess =  (activeCloud) => ({  
+  type: DELETE_CLOUD_SUCCESS,
+  activeCloud
+});
+
+export const DELETE_CLOUD_ERROR = 'DELETE_CLOUD_ERROR';
+export const updateCloudError = (error) => ({
+  type: DELETE_CLOUD_ERROR,
+  error
+})
+
 export const fetchClouds = () => dispatch => {
   dispatch(fetchClouds());
   return fetch(`${API_BASE_URL}/clouds`)
@@ -105,5 +144,48 @@ export const addCloud = (title, words, font, color) => dispatch => {
         dispatch(generateCloudSuccess(data))
       ).catch(err => 
         dispatch(generateCloudError(err))
+      );
+}
+
+export const updateCloud = (id, title, words, font, color, upvotes, downvotes) => dispatch => {
+  dispatch(generateCloudRequest());
+  return fetch(`${API_BASE_URL}/clouds/:id`, {
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    method: `PUT`,
+    body: JSON.stringify({
+      title,
+      words,
+      font,
+      color,
+      upvotes,
+      downvotes
+    })
+  })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.statusTest)
+      }
+      return res.json();
+    }).then(data => 
+        dispatch(generateCloudSuccess(data))
+      ).catch(err => 
+        dispatch(generateCloudError(err))
+      );
+}
+
+export const removeCloud = (activeCloud) => dispatch => {
+  dispatch(generateCloudRequest());
+  return fetch(`${API_BASE_URL}/clouds/:id`, {
+    method: `DELETE`
+  })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.statusTest)
+      }
+      return res.json();
+    }).then(data => 
+        dispatch(deleteCloudSuccess(data))
+      ).catch(err => 
+        dispatch(deleteCloudError(err))
       );
 }
