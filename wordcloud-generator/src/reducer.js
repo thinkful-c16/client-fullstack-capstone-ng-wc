@@ -2,7 +2,7 @@ import {  } from './actions';
 
 const initialState = {
   view: 'home',
-  words: [],
+  activeWordCloud: {},
   font: '',
   fontColor: ''
 };
