@@ -24,7 +24,7 @@ export const fetchSingleCloudRequest = () => ({
 
 export const FETCH_SINGLE_CLOUD_SUCCESS = 'FETCH_SINGLE_CLOUD_SUCCESS';
 export const fetchSingleCloudSuccess = (activeCloud) => ({
-  type: FFETCH_SINGLE_CLOUD_SUCCESS,
+  type: FETCH_SINGLE_CLOUD_SUCCESS,
   activeCloud
 })
 
@@ -34,14 +34,25 @@ export const fetchSingleCloudError = (error) => ({
   error
 })
 
-export const GENERATE_CLOUD = 'GENERATE_CLOUD';
-export const generateCloud = (title, words, font, color) => ({
-  type: GENERATE_CLOUD,
+export const GENERATE_CLOUD_REQUEST = 'GENERATE_CLOUD_REQUEST';
+export const generateCloudRequest = () => ({
+  type: GENERATE_CLOUD_REQUEST
+})
+
+export const GENERATE_CLOUD_SUCCESS = 'GENERATE_CLOUD_SUCCESS';
+export const generateCloudSuccess =  (title, words, font, color) => ({  
+  type: GENERATE_CLOUD_SUCCESS,
   title,
   words,
   font,
   color
 });
+
+export const GENERATE_CLOUD_ERROR = 'GENERATE_CLOUD_ERROR';
+export const generateCloudError = (error) => ({
+  type: GENERATE_CLOUD_ERROR,
+  error
+})
 
 export const fetchClouds = () => dispatch => {
   dispatch(fetchClouds());
@@ -71,4 +82,28 @@ export const fetchSingleCloud = () => dispatch => {
     ).catch(err =>
         dispatch(fetchSingleCloudError(err))
     );
+}
+
+export const addCloud = (title, words, font, color) => dispatch => {
+  dispatch(generateCloudRequest());
+  return fetch(`${API_BASE_URL}/clouds`, {
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    method: `POST`,
+    body: JSON.stringify({
+      title,
+      words,
+      font,
+      color
+    })
+  })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.statusTest)
+      }
+      return res.json();
+    }).then(data => 
+        dispatch(generateCloudSuccess(data))
+      ).catch(err => 
+        dispatch(generateCloudError(err))
+      );
 }

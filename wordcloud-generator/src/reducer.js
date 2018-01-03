@@ -5,7 +5,9 @@ import {
   FETCH_SINGLE_CLOUD_REQUEST,
   FETCH_SINGLE_CLOUD_SUCCESS,
   FETCH_SINGLE_CLOUD_ERROR,
-  GENERATE_CLOUD
+  GENERATE_CLOUD_REQUEST,
+  GENERATE_CLOUD_SUCCESS,
+  GENERATE_CLOUD_ERROR
   } from './actions';
 
 const initialState = {
@@ -39,7 +41,8 @@ export const reducer = (state = initialState, action) => {
   }
   if(action.type === FETCH_SINGLE_CLOUD_REQUEST){
     return Object.assign({}, state, {
-      view: 'focus'
+      loading: true,
+      error: null
     })
   }
   if(action.type === FETCH_SINGLE_CLOUD_SUCCESS){
@@ -56,9 +59,26 @@ export const reducer = (state = initialState, action) => {
       loading: false
     })
   }
-  if(action.type === GENERATE_CLOUD){
+  if(action.type === GENERATE_CLOUD_REQUEST){
     return Object.assign({}, state, {
-      view: 'newCloud'
+      loading: true,
+      error: null
+    })
+  }
+  //might have issues with the activeCloud not resetting
+  if(action.type === GENERATE_CLOUD_SUCCESS){
+    return Object.assign({}, state.activeCloud, {
+      title: action.title,
+      words: action.words,
+      // words: action.text.split(/\ |\.|\?|\!|\-\(|\)|\&/),
+      font: action.font,
+      color: action.color
+    })
+  }
+  if(action.type === GENERATE_CLOUD_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
     })
   }
   return state;
