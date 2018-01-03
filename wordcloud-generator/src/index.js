@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
 import App from './components/app';
-// import Wordcloud from './components/word-cloud'
+
+import store from './store';
+
+import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<Provider store={store}>
+  <App />
+</Provider>,
+document.getElementById('root'));
 registerServiceWorker();
