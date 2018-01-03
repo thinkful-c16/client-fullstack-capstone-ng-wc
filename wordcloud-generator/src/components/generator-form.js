@@ -42,12 +42,22 @@ export class GeneratorForm extends React.Component {
           <textarea
           name="textInput"
           id="textInput"
-          className="text"
+          className="textArea"
           required>
           </textarea>
         </div>
         <div>
           {button}
+        </div>
+        <div>
+          <label htmlFor="cloudTitle">Title:</label>
+          <input
+          type="text"
+          name="cloudTitle"
+          id="cloudTitle"
+          className="text"
+          required
+          />
         </div>
         <div>
           <label htmlFor="fontColor">Font Color:</label>
