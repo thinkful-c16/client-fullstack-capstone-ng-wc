@@ -6,6 +6,7 @@ export default function HomeView(props) {
   return (
     <section className="home-view">
       <GeneratorForm />
+      <LibraryCarousel />
     </section>
   );
 }
