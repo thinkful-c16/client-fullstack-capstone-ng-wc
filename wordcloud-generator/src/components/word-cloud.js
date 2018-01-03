@@ -1,6 +1,6 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import canvas from 'canvas';
+import { connect } from 'react-redux';
+
 import cloud from 'd3-cloud';
 import './word-cloud.css';
 
@@ -12,7 +12,7 @@ const words = ["Hello", "world", "normally", "you", "want", "more", "words", "th
 
 function end(words) { console.log(JSON.stringify(words)); } 
 
-export default class Wordcloud extends React.Component {
+export class Wordcloud extends React.Component {
 
     componentDidMount() {
         console.log('here');
@@ -31,3 +31,9 @@ export default class Wordcloud extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    view: state.view 
+});
+  
+export default connect(mapStateToProps)(Wordcloud);
