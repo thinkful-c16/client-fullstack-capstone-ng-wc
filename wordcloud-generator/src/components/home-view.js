@@ -7,15 +7,11 @@ export default function HomeView(props) {
     <section className="home-view">
       <GeneratorForm />
       <hr></hr>
-      <div className="home-carousel-header">
-        <h3>from the Library:</h3>
+      <div className="home-carousel">
+        <LibraryCarousel />
       </div>
-      <LibraryCarousel />
-      <div className="browse-library" id="browseLibrary">
-        <button type="submit" name="submit" id="browseLibraryButton" className="button">
-            Browse Library
-        </button>
-      </div>
+      <br></br>
+      <a href="#library" className="library">Browse the Word Cloud Library</a>
     </section>
   );
 }

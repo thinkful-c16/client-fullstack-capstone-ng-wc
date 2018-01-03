@@ -1,8 +1,6 @@
 import React from 'react';
 import './generator-form.css';
 
-import WordCloudOptions from './word-cloud-options';
-
 export default class generatorForm extends React.Component {
 
   render() {
@@ -29,7 +27,20 @@ export default class generatorForm extends React.Component {
             Generate Word Cloud
           </button>
         </div>
-        <WordCloudOptions />
+        <div>
+          <label htmlFor="fontColor">Font Color:</label>
+          <select name="font-color" id="fontColor" size="1">
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+          </select>
+          <label htmlFor="fontStyle">Font:</label>
+          <select name="font-style" id="fontStyle" size="1">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Helvetica">Helvetica</option>
+          </select>
+      </div>
       </form>
     );
   }

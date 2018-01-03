@@ -16,6 +16,9 @@ export default function CloudView(props) {
         <button type="submit" name="submit" id="deleteWordCloud" className="button">
             Delete Word Cloud
         </button>
+        <button type="submit" name="submit" id="saveWordCloud" className="button">
+            Save to Library
+        </button>
       </form>
     </section>
   );
