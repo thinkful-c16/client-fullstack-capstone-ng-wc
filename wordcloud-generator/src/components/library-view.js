@@ -1,12 +1,12 @@
 import React from 'react';
-import Wordcloud from './word-cloud';
 import LibraryCarousel from './library-carousel';
+import LibraryList from './library-list';
 
 export default function LibraryView(props) {
   return (
     <section className="library-view">
-      <div className="library-container">
-        <Wordcloud />
+      <div className="library-list">
+        <LibraryList />
       </div>
       <div className="library-carousel">
         <LibraryCarousel />
