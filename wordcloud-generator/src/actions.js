@@ -61,14 +61,17 @@ export const updateCloudRequest = () => ({
 })
 
 export const UPDATE_CLOUD_SUCCESS = 'UPDATE_CLOUD_SUCCESS';
-export const updateCloudSuccess =  (title, text, words, font, color) => ({  
-  type: UPDATE_CLOUD_SUCCESS,
-  title,
-  text,
-  words,
-  font,
-  color
-});
+export const updateCloudSuccess =  (data) => {
+  console.log('Made it to update cloud success');
+  return {
+    type: UPDATE_CLOUD_SUCCESS,
+    title: data.title,
+    text: data.text,
+    words: data.words,
+    font: data.font,
+    color: data.color
+  }
+};
 
 export const UPDATE_CLOUD_ERROR = 'UPDATE_CLOUD_ERROR';
 export const updateCloudError = (error) => ({
@@ -254,9 +257,9 @@ export const updateCloud = (id, title, text, words, font, color) => dispatch => 
         throw new Error(res.statusTest)
       }
       return res.json();
-    }).then(data => 
-        dispatch(updateCloudSuccess(data.id, data.title, data.text, data.words, data.font, data.color))
-      ).catch(err => 
+    }).then(function(data) {
+      return dispatch(updateCloudSuccess(data))
+    }).catch(err => 
         dispatch(updateCloudError(err))
       );
 }

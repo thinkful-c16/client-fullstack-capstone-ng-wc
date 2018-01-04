@@ -46,52 +46,52 @@ export const reducer = (state = initialState, action) => {
       view: 'home'
     })
   }
-  if(action.type === GO_EDIT){
+  else if(action.type === GO_EDIT){
     return Object.assign({}, state, {
       view: "cloudEdit"
     })
   }
-  if(action.type === UP_VOTE_REQUEST){
+  else if(action.type === UP_VOTE_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
-  if(action.type === UP_VOTE_SUCCESS){
+  else if(action.type === UP_VOTE_SUCCESS){
     return Object.assign({}, state.activeCloud, {
       upvotes: action.upvotes
     })
   }
-  if(action.type === UP_VOTE_ERROR){
+  else if(action.type === UP_VOTE_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === DOWN_VOTE_REQUEST){
+  else if(action.type === DOWN_VOTE_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
-  if(action.type === DOWN_VOTE_SUCCESS){
+  else if(action.type === DOWN_VOTE_SUCCESS){
     return Object.assign({}, state.activeCloud, {
       downvotes: action.downvotes
     })
   }
-  if(action.type === DOWN_VOTE_ERROR){
+  else if(action.type === DOWN_VOTE_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === FETCH_CLOUDS_REQUEST){
+  else if(action.type === FETCH_CLOUDS_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
-  if(action.type === FETCH_CLOUDS_SUCCESS){
+  else if(action.type === FETCH_CLOUDS_SUCCESS){
     return Object.assign({}, state, {
       loading: false,
       error: null,
@@ -99,19 +99,19 @@ export const reducer = (state = initialState, action) => {
       view: 'library'
     })
   }
-  if(action.type === FETCH_CLOUDS_ERROR){
+  else if(action.type === FETCH_CLOUDS_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === FETCH_SINGLE_CLOUD_REQUEST){
+  else if(action.type === FETCH_SINGLE_CLOUD_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
-  if(action.type === FETCH_SINGLE_CLOUD_SUCCESS){
+  else if(action.type === FETCH_SINGLE_CLOUD_SUCCESS){
     return Object.assign({}, state, {
       loading: false,
       error: null,
@@ -119,20 +119,20 @@ export const reducer = (state = initialState, action) => {
       view: 'focus'
     })
   }
-  if(action.type === FETCH_SINGLE_CLOUD_ERROR){
+  else if(action.type === FETCH_SINGLE_CLOUD_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === GENERATE_CLOUD_REQUEST){
+  else if(action.type === GENERATE_CLOUD_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
   //might have issues with the activeCloud not resetting
-  if(action.type === GENERATE_CLOUD_SUCCESS){
+  else if(action.type === GENERATE_CLOUD_SUCCESS){
 
     return Object.assign({}, state, {
       activeCloud: {
@@ -145,52 +145,50 @@ export const reducer = (state = initialState, action) => {
       view: 'cloudEdit'
     })
   }
-  if(action.type === GENERATE_CLOUD_ERROR){
+  else if(action.type === GENERATE_CLOUD_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === UPDATE_CLOUD_REQUEST){
+  else if(action.type === UPDATE_CLOUD_REQUEST){
     return Object.assign({}, state, {
       loading: true,
       error: null
     })
   }
-  if(action.type === UPDATE_CLOUD_SUCCESS){
-    
-    console.log('Made it to update cloud success');
+  else if(action.type === UPDATE_CLOUD_SUCCESS){
 
     return Object.assign({}, state, {
+      view: 'focus',
       activeCloud: {
         title: action.title,
         text: action.text,
         words: action.words,
         font: action.font,
         color: action.color,
-      },
-      view: 'focus'
+      }
     })
   }
-  if(action.type === UPDATE_CLOUD_ERROR){
+  else if(action.type === UPDATE_CLOUD_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
     })
   }
-  if(action.type === DELETE_CLOUD_REQUEST){
+  else if(action.type === DELETE_CLOUD_REQUEST){
     return Object.assign({}, state, {
       loading: false,
       error: null,
       view: 'library'
     })
   }
-  if(action.type === DELETE_CLOUD_SUCCESS){
+  else if(action.type === DELETE_CLOUD_SUCCESS){
     return Object.assign({}, state, {
       clouds: action.clouds
     })
   }
-  if(action.type === DELETE_CLOUD_ERROR){
+  else if(action.type === DELETE_CLOUD_ERROR){
     return Object.assign({}, state, {
       error: action.error,
       loading: false
