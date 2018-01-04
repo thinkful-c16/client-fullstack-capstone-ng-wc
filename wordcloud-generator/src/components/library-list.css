@@ -1,0 +1,31 @@
+ul {
+    padding: 0;
+}
+
+.cloud-list-item {
+    list-style: none;
+    border: black solid 1px;
+    border-radius: 5px;
+    width: 40%;
+    padding: .25%;
+    margin: .25%;
+    text-align: center;
+    cursor: pointer
+}
+
+h7 {
+    font-size: 100%;
+    display: block
+}
+
+span {
+    font-size: 75%
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) { 
+    .cloud-list-item {
+        width: 100%;
+    }
+}
