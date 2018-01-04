@@ -5,6 +5,47 @@ import './generator-form.css';
 
 export class GeneratorForm extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      words: [],
+      title: '',
+      font: 'Impact',
+      color: 'Red'
+    }
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    if (target.name === 'textInput') {
+      this.setState({
+        words: target.value.split(/\ |\.|\?|\!|\-\(|\)|\&|\,/)
+      })
+    }
+    else if (target.name === 'cloudTitle') {
+      this.setState({
+        title: target.value
+      })
+    }
+    else if (target.name === 'fontColor') {
+      this.setState({
+        color: target.value
+      })
+    }
+    else if (target.name === 'fontStyle') {
+      this.setState({
+        font: target.value
+      })
+    }
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
   render() {
 
     const view = this.props.view;
@@ -34,12 +75,13 @@ export class GeneratorForm extends React.Component {
     }
 
     return (
-      <form>
+      <form onSubmit={e => this.onSubmit(e)}>
         <div>
           <label htmlFor="textInput">please input text below to get started</label>
         </div>
         <div>
           <textarea
+          onChange={this.handleInputChange}
           name="textInput"
           id="textInput"
           className="textArea"
@@ -52,6 +94,7 @@ export class GeneratorForm extends React.Component {
         <div>
           <label htmlFor="cloudTitle">Title:</label>
           <input
+          onChange={this.handleInputChange}
           type="text"
           name="cloudTitle"
           id="cloudTitle"
@@ -61,13 +104,13 @@ export class GeneratorForm extends React.Component {
         </div>
         <div>
           <label htmlFor="fontColor">Font Color:</label>
-          <select name="font-color" id="fontColor" size="1">
+          <select onChange={this.handleInputChange} name="fontColor" id="fontColor" size="1">
             <option value="red">Red</option>
             <option value="yellow">Yellow</option>
             <option value="blue">Blue</option>
           </select>
           <label htmlFor="fontStyle">Font:</label>
-          <select name="font-style" id="fontStyle" size="1">
+          <select onChange={this.handleInputChange} name="fontStyle" id="fontStyle" size="1">
             <option value="Impact">Impact</option>
             <option value="Arial">Arial</option>
             <option value="Helvetica">Helvetica</option>
@@ -78,8 +121,4 @@ export class GeneratorForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  view: state.view
-});
-
-export default connect(mapStateToProps)(GeneratorForm);
+export default connect()(GeneratorForm);
