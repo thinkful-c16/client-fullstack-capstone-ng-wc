@@ -14,7 +14,8 @@ import {
   DELETE_CLOUD_REQUEST,
   DELETE_CLOUD_SUCCESS,
   DELETE_CLOUD_ERROR,
-  GO_HOME
+  GO_HOME,
+  GO_EDIT
   } from './actions';
 
 const initialState = {
@@ -35,6 +36,11 @@ export const reducer = (state = initialState, action) => {
   if(action.type === GO_HOME){
     return Object.assign({}, state, {
       view: 'home'
+    })
+  }
+  if(action.type === GO_EDIT){
+    return Object.assign({}, state, {
+      view: "cloudEdit"
     })
   }
   if(action.type === FETCH_CLOUDS_REQUEST){

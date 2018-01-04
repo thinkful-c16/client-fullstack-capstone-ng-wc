@@ -78,7 +78,7 @@ export class GeneratorForm extends React.Component {
     return (
       <form onSubmit={e => this.onSubmit(e)}>
         <div>
-          <label htmlFor="textInput">please input text below to get started</label>
+          <label htmlFor="textInput">please input text below</label>
         </div>
         <div>
           <textarea

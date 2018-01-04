@@ -100,6 +100,11 @@ export const goHome = () => ({
   type:GO_HOME
 })
 
+export const GO_EDIT = 'GO_EDIT';
+export const goEdit = () => ({
+  type:GO_EDIT
+})
+
 export const fetchClouds = () => dispatch => {
   dispatch(fetchCloudsRequest());
   return fetch(`${API_BASE_URL}/clouds`)
