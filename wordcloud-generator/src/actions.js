@@ -113,7 +113,7 @@ export const upVoteRequest = () => ({
 export const UP_VOTE_SUCCESS = 'UP_VOTE_SUCCESS';
 export const upVoteSuccess = (upvotes) => ({
   type:UP_VOTE_SUCCESS,
-  upvotes: upvotes++
+  upvotes
 })
 
 export const UP_VOTE_ERROR = 'UP_VOTE_ERROR';
@@ -130,7 +130,7 @@ export const downVoteRequest = () => ({
 export const DOWN_VOTE_SUCCESS = 'DOWN_VOTE_SUCCESS';
 export const downVoteSuccess = (downvotes) => ({
   type:DOWN_VOTE_SUCCESS,
-  downvotes: downvotes--
+  downvotes
 })
 
 export const DOWN_VOTE_ERROR = 'DOWN_VOTE_ERROR';
@@ -196,10 +196,11 @@ export const addCloud = (title, text, words, font, color) => dispatch => {
 
 export const upVoteCloud = (id, upvotes) => dispatch => {
   dispatch(upVoteRequest());
-  return fetch(`${API_BASE_URL}/clouds/${id}`, {
+  return fetch(`${API_BASE_URL}/clouds/${id}/upvote`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     method: `PUT`,
     body: JSON.stringify({
+      id,
       upvotes
     })
   })
@@ -217,10 +218,11 @@ export const upVoteCloud = (id, upvotes) => dispatch => {
 
 export const downVoteCloud = (id, downvotes) => dispatch => {
   dispatch(downVoteRequest());
-  return fetch(`${API_BASE_URL}/clouds/${id}`, {
+  return fetch(`${API_BASE_URL}/clouds/${id}/downvote`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     method: `PUT`,
     body: JSON.stringify({
+      id,
       downvotes
     })
   })
