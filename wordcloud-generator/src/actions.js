@@ -105,6 +105,40 @@ export const goEdit = () => ({
   type:GO_EDIT
 })
 
+export const UP_VOTE_REQUEST = 'UP_VOTE_REQUEST';
+export const upVoteRequest = () => ({
+  type: UP_VOTE_REQUEST
+})
+
+export const UP_VOTE_SUCCESS = 'UP_VOTE_SUCCESS';
+export const upVoteSuccess = (upvotes) => ({
+  type:UP_VOTE_SUCCESS,
+  upvotes: upvotes++
+})
+
+export const UP_VOTE_ERROR = 'UP_VOTE_ERROR';
+export const upVoteError = (error) => ({
+  type: UP_VOTE_ERROR,
+  error
+})
+
+export const DOWN_VOTE_REQUEST = 'DOWN_VOTE_REQUEST';
+export const downVoteRequest = () => ({
+  type: DOWN_VOTE_REQUEST
+})
+
+export const DOWN_VOTE_SUCCESS = 'DOWN_VOTE_SUCCESS';
+export const downVoteSuccess = (downvotes) => ({
+  type:DOWN_VOTE_SUCCESS,
+  downvotes: downvotes--
+})
+
+export const DOWN_VOTE_ERROR = 'DOWN_VOTE_ERROR';
+export const downVoteError = (error) => ({
+  type: DOWN_VOTE_ERROR,
+  error
+})
+
 export const fetchClouds = () => dispatch => {
   dispatch(fetchCloudsRequest());
   return fetch(`${API_BASE_URL}/clouds`)
@@ -158,6 +192,48 @@ export const addCloud = (title, text, words, font, color) => dispatch => {
       ).catch(err => 
         dispatch(generateCloudError(err))
       );
+}
+
+export const upVoteCloud = (id, upvotes) => dispatch => {
+  dispatch(upVoteRequest());
+  return fetch(`${API_BASE_URL}/clouds/${id}`, {
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    method: `PUT`,
+    body: JSON.stringify({
+      upvotes
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      throw new Error(res.statusTest)
+    }
+    return res.json();
+  }).then(data => 
+      dispatch(upVoteSuccess(data.upvotes))
+    ).catch(err => 
+      dispatch(upVoteError(err))
+    );
+}
+
+export const downVoteCloud = (id, downvotes) => dispatch => {
+  dispatch(downVoteRequest());
+  return fetch(`${API_BASE_URL}/clouds/${id}`, {
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    method: `PUT`,
+    body: JSON.stringify({
+      downvotes
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      throw new Error(res.statusTest)
+    }
+    return res.json();
+  }).then(data => 
+      dispatch(downVoteSuccess(data.downvotes))
+    ).catch(err => 
+      dispatch(downVoteError(err))
+    );
 }
 
 export const updateCloud = (id, title, text, words, font, color, upvotes, downvotes) => dispatch => {

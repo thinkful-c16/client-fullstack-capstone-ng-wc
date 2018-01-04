@@ -15,7 +15,13 @@ import {
   DELETE_CLOUD_SUCCESS,
   DELETE_CLOUD_ERROR,
   GO_HOME,
-  GO_EDIT
+  GO_EDIT,
+  UP_VOTE_REQUEST,
+  UP_VOTE_SUCCESS,
+  UP_VOTE_ERROR,
+  DOWN_VOTE_REQUEST,
+  DOWN_VOTE_SUCCESS,
+  DOWN_VOTE_ERROR
   } from './actions';
 
 const initialState = {
@@ -26,7 +32,9 @@ const initialState = {
     text: '',
     words: [],
     font: '',
-    color: ''
+    color: '',
+    upvotes: 0,
+    downvotes: 0
   },
   loading: false,
   error: null
@@ -41,6 +49,40 @@ export const reducer = (state = initialState, action) => {
   if(action.type === GO_EDIT){
     return Object.assign({}, state, {
       view: "cloudEdit"
+    })
+  }
+  if(action.type === UP_VOTE_REQUEST){
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    })
+  }
+  if(action.type === UP_VOTE_SUCCESS){
+    return Object.assign({}, state.activeCloud, {
+      upvotes: action.upvotes
+    })
+  }
+  if(action.type === UP_VOTE_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
+    })
+  }
+  if(action.type === DOWN_VOTE_REQUEST){
+    return Object.assign({}, state, {
+      loading: true,
+      error: null
+    })
+  }
+  if(action.type === DOWN_VOTE_SUCCESS){
+    return Object.assign({}, state.activeCloud, {
+      downvotes: action.downvotes
+    })
+  }
+  if(action.type === DOWN_VOTE_ERROR){
+    return Object.assign({}, state, {
+      error: action.error,
+      loading: false
     })
   }
   if(action.type === FETCH_CLOUDS_REQUEST){
