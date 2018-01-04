@@ -18,7 +18,7 @@ body {
  padding: 20px 0;
  position: absolute;
  right: 0;
- top: 0;
+ top: 200px;
  z-index: -1;
 }
 
@@ -36,4 +36,8 @@ body {
 
 .tag-cloud > div {
  transition: 1.4s;
+}
+
+.edit-form {
+
 }

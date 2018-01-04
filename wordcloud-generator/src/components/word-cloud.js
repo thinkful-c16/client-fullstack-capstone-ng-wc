@@ -1,15 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {goEdit, downVoteCloud, upVoteCloud} from '../actions';
 import TagCloud from 'react-tag-cloud';
 import randomColor from 'randomcolor';
 import './word-cloud.css';
 
 export class Wordcloud extends React.Component {
 
+    onSubmit(event) {
+        event.preventDefault();
+        this.props.dispatch(goEdit());
+      }
+
     render() {
 
-        const words = this.props.activeCloud.words.map((word, index) => (
+        const deduped = [...new Set(this.props.activeCloud.words)];
+
+        const words = deduped.map((word, index) => (
                 <div key={index} >
                     {word}
                 </div>
@@ -30,6 +38,17 @@ export class Wordcloud extends React.Component {
                         }}>
                         {words}
                     </TagCloud>
+                    {this.props.view === 'focus' && <div className="edit-form">
+                        <form onSubmit={(event) => this.onSubmit(event)}>
+                            <button type="submit" name="submit" id="editWordCloud" className="button">
+                                Edit Word Cloud
+                            </button>
+                            <div>
+                                <span>{this.props.activeCloud.upvotes}</span> <a onClick={() => this.props.dispatch(upVoteCloud(this.props.activeCloud.id, this.props.activeCloud.upvotes++))} href="#thumbsUp" className="thumbs-up"><i className="fa fa-thumbs-up" aria-hidden="true"></i></a>
+                                <span>{this.props.activeCloud.upvotes}</span> <a onClick={() => this.props.dispatch(downVoteCloud(this.props.activeCloud.id, this.props.activeCloud.downvotes--))} href="#thumbsDown" className="thumbs-down"><i className="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                            </div>
+                        </form>
+                     </div>}
                 </div>
             </div>
         );
@@ -37,7 +56,8 @@ export class Wordcloud extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    activeCloud: state.activeCloud 
+    activeCloud: state.activeCloud,
+    view: state.view
 });
   
 export default connect(mapStateToProps)(Wordcloud);
