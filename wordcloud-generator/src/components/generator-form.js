@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {addCloud} from '../actions';
+
 import './generator-form.css';
 
 export class GeneratorForm extends React.Component {
@@ -43,9 +45,9 @@ export class GeneratorForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
+    this.props.dispatch(addCloud(this.state.title, this.state.words, this.state.font, this.state.color));
     console.log(this.state);
   }
-
   render() {
 
     const view = this.props.view;

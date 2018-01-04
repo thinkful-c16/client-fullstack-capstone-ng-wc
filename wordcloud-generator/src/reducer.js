@@ -82,7 +82,6 @@ export const reducer = (state = initialState, action) => {
     return Object.assign({}, state.activeCloud, {
       title: action.title,
       words: action.words,
-      // words: action.text.split(/\ |\.|\?|\!|\-\(|\)|\&/),
       font: action.font,
       color: action.color
     })

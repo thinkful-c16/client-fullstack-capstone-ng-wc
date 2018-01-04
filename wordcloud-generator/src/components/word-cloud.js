@@ -10,12 +10,13 @@ const words = ["Hello", "world", "normally", "you", "want", "more", "words", "th
       return {text: d, size: 10 + Math.random() * 90};
     });
 
-function end(words) { console.log(JSON.stringify(words)); } 
+    // function end(words) { console.log(JSON.stringify(words)); } 
+function end(words) { console.log('success'); } 
 
 export class Wordcloud extends React.Component {
 
     componentDidMount() {
-        console.log('here');
+        // console.log('here');
         cloud()
         .canvas(() => this.canvas)
         .words(words)
