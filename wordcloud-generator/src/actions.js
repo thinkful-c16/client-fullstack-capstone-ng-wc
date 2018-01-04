@@ -176,14 +176,14 @@ export const updateCloud = (id, title, text, words, font, color, upvotes, downvo
       }
       return res.json();
     }).then(data => 
-        dispatch(updateCloudSuccess(data))
+        dispatch(updateCloudSuccess(data.title, data.text, data.words, data.font, data.color, data.upvotes, data.downvotes))
       ).catch(err => 
         dispatch(updateCloudError(err))
       );
 }
 
 export const removeCloud = (id) => dispatch => {
-  dispatch(generateCloudRequest());
+  dispatch(deleteCloudRequest());
   return fetch(`${API_BASE_URL}/clouds/:id`, {
     method: `DELETE`
   })
