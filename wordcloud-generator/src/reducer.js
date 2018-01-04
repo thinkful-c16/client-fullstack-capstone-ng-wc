@@ -20,7 +20,13 @@ import {
 const initialState = {
   view: 'home',
   clouds: [],
-  activeCloud: {},
+  activeCloud: {
+    title: '',
+    text: '',
+    words: [],
+    font: '',
+    color: ''
+  },
   loading: false,
   error: null
 };
@@ -79,9 +85,12 @@ export const reducer = (state = initialState, action) => {
   }
   //might have issues with the activeCloud not resetting
   if(action.type === GENERATE_CLOUD_SUCCESS){
+    console.log('action:', action);
+
     return Object.assign({}, state, {
       activeCloud: {
       title: action.title,
+      text: action.text,
       words: action.words,
       font: action.font,
       color: action.color
@@ -104,6 +113,7 @@ export const reducer = (state = initialState, action) => {
   if(action.type === UPDATE_CLOUD_SUCCESS){
     return Object.assign({}, state.activeCloud, {
       title: action.title,
+      text: action.text,
       words: action.words,
       font: action.font,
       color: action.color,

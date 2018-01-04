@@ -5,10 +5,10 @@ import cloud from 'd3-cloud';
 import './word-cloud.css';
 
 //dummy data- will be importing from store eventually
-const words = ["Hello", "world", "normally", "you", "want", "more", "words", "than", "this"]
-    .map(function(d) {
-      return {text: d, size: 10 + Math.random() * 90};
-    });
+// const words = this.props.activeCloud.words
+//     .map(function(d) {
+//       return {text: d, size: 10 + Math.random() * 90};
+//     });
 
     // function end(words) { console.log(JSON.stringify(words)); } 
 function end(words) { console.log('success'); } 
@@ -16,6 +16,11 @@ function end(words) { console.log('success'); }
 export class Wordcloud extends React.Component {
 
     componentDidMount() {
+
+        const words = this.props.activeCloud.words
+        .map(function(d) {
+          return {text: d, size: 10 + Math.random() * 90};
+        });
         // console.log('here');
         cloud()
         .canvas(() => this.canvas)
@@ -34,7 +39,7 @@ export class Wordcloud extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    view: state.view 
+    activeCloud: state.activeCloud 
 });
   
 export default connect(mapStateToProps)(Wordcloud);

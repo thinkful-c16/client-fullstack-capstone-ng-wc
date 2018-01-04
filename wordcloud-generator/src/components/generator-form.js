@@ -10,6 +10,7 @@ export class GeneratorForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      text: '',
       words: [],
       title: '',
       font: 'Impact',
@@ -23,6 +24,7 @@ export class GeneratorForm extends React.Component {
     const target = event.target;
     if (target.name === 'textInput') {
       this.setState({
+        text: target.value,
         words: target.value.split(/\ |\.|\?|\!|\-\(|\)|\&|\,/)
       })
     }
@@ -45,7 +47,7 @@ export class GeneratorForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(addCloud(this.state.title, this.state.words, this.state.font, this.state.color));
+    this.props.dispatch(addCloud(this.state.title, this.state.text, this.state.words, this.state.font, this.state.color));
     console.log(this.state);
   }
   render() {

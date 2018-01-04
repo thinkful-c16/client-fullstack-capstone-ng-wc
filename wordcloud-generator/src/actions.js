@@ -40,9 +40,10 @@ export const generateCloudRequest = () => ({
 })
 
 export const GENERATE_CLOUD_SUCCESS = 'GENERATE_CLOUD_SUCCESS';
-export const generateCloudSuccess =  (title, words, font, color) => ({  
+export const generateCloudSuccess =  (title, text, words, font, color) => ({  
   type: GENERATE_CLOUD_SUCCESS,
   title,
+  text,
   words,
   font,
   color
@@ -60,9 +61,10 @@ export const updateCloudRequest = () => ({
 })
 
 export const UPDATE_CLOUD_SUCCESS = 'UPDATE_CLOUD_SUCCESS';
-export const updateCloudSuccess =  (title, words, font, color, upvotes, downvotes) => ({  
+export const updateCloudSuccess =  (title, text, words, font, color, upvotes, downvotes) => ({  
   type: UPDATE_CLOUD_SUCCESS,
   title,
+  text,
   words,
   font,
   color,
@@ -128,13 +130,14 @@ export const fetchSingleCloud = () => dispatch => {
     );
 }
 
-export const addCloud = (title, words, font, color) => dispatch => {
+export const addCloud = (title, text, words, font, color) => dispatch => {
   dispatch(generateCloudRequest());
   return fetch(`${API_BASE_URL}/clouds`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     method: `POST`,
     body: JSON.stringify({
       title,
+      text,
       words,
       font,
       color
@@ -146,19 +149,20 @@ export const addCloud = (title, words, font, color) => dispatch => {
       }
       return res.json();
     }).then(data => 
-        dispatch(generateCloudSuccess(data))
+        dispatch(generateCloudSuccess(data.title, data.text, data.words, data.font, data.color))
       ).catch(err => 
         dispatch(generateCloudError(err))
       );
 }
 
-export const updateCloud = (id, title, words, font, color, upvotes, downvotes) => dispatch => {
-  dispatch(generateCloudRequest());
+export const updateCloud = (id, title, text, words, font, color, upvotes, downvotes) => dispatch => {
+  dispatch(updateCloudRequest());
   return fetch(`${API_BASE_URL}/clouds/:id`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     method: `PUT`,
     body: JSON.stringify({
       title,
+      text,
       words,
       font,
       color,
@@ -172,9 +176,9 @@ export const updateCloud = (id, title, words, font, color, upvotes, downvotes) =
       }
       return res.json();
     }).then(data => 
-        dispatch(generateCloudSuccess(data))
+        dispatch(updateCloudSuccess(data))
       ).catch(err => 
-        dispatch(generateCloudError(err))
+        dispatch(updateCloudError(err))
       );
 }
 
