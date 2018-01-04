@@ -10,7 +10,9 @@ export class Wordcloud extends React.Component {
     render() {
 
         const words = this.props.activeCloud.words.map((word, index) => (
-            <div key={index}>{word}</div>
+                <div key={index} >
+                    {word}
+                </div>
           ));
 
         return (

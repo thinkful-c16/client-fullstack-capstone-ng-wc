@@ -133,7 +133,6 @@ export const reducer = (state = initialState, action) => {
   }
   //might have issues with the activeCloud not resetting
   if(action.type === GENERATE_CLOUD_SUCCESS){
-    console.log('action:', action);
 
     return Object.assign({}, state, {
       activeCloud: {
@@ -159,14 +158,18 @@ export const reducer = (state = initialState, action) => {
     })
   }
   if(action.type === UPDATE_CLOUD_SUCCESS){
-    return Object.assign({}, state.activeCloud, {
-      title: action.title,
-      text: action.text,
-      words: action.words,
-      font: action.font,
-      color: action.color,
-      upvotes: action.upvotes,
-      downvotes: action.downvotes
+    
+    console.log('Made it to update cloud success');
+
+    return Object.assign({}, state, {
+      activeCloud: {
+        title: action.title,
+        text: action.text,
+        words: action.words,
+        font: action.font,
+        color: action.color,
+      },
+      view: 'focus'
     })
   }
   if(action.type === UPDATE_CLOUD_ERROR){

@@ -61,15 +61,13 @@ export const updateCloudRequest = () => ({
 })
 
 export const UPDATE_CLOUD_SUCCESS = 'UPDATE_CLOUD_SUCCESS';
-export const updateCloudSuccess =  (title, text, words, font, color, upvotes, downvotes) => ({  
+export const updateCloudSuccess =  (title, text, words, font, color) => ({  
   type: UPDATE_CLOUD_SUCCESS,
   title,
   text,
   words,
   font,
-  color,
-  upvotes,
-  downvotes
+  color
 });
 
 export const UPDATE_CLOUD_ERROR = 'UPDATE_CLOUD_ERROR';
@@ -238,28 +236,26 @@ export const downVoteCloud = (id, downvotes) => dispatch => {
     );
 }
 
-export const updateCloud = (id, title, text, words, font, color, upvotes, downvotes) => dispatch => {
+export const updateCloud = (id, title, text, words, font, color) => dispatch => {
   dispatch(updateCloudRequest());
-  return fetch(`${API_BASE_URL}/clouds/:id`, {
+  return fetch(`${API_BASE_URL}/clouds/${id}`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     method: `PUT`,
     body: JSON.stringify({
+      id,
       title,
       text,
       words,
       font,
-      color,
-      upvotes,
-      downvotes
+      color
     })
-  })
-    .then(res => {
+  }).then(res => {
       if(!res.ok) {
         throw new Error(res.statusTest)
       }
       return res.json();
     }).then(data => 
-        dispatch(updateCloudSuccess(data.title, data.text, data.words, data.font, data.color, data.upvotes, data.downvotes))
+        dispatch(updateCloudSuccess(data.id, data.title, data.text, data.words, data.font, data.color))
       ).catch(err => 
         dispatch(updateCloudError(err))
       );
