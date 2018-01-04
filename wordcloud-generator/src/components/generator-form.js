@@ -63,9 +63,6 @@ export class GeneratorForm extends React.Component {
                 <button type="submit" name="submit" id="deleteWordCloud" className="button">
                     Delete Word Cloud
                 </button>
-                <button type="submit" name="submit" id="saveWordCloud" className="button">
-                    Save to Library
-                </button>
               </div>
     } else {
       button =
@@ -123,4 +120,8 @@ export class GeneratorForm extends React.Component {
   }
 }
 
-export default connect()(GeneratorForm);
+const mapStateToProps = state => ({
+  view: state.view
+});
+
+export default connect(mapStateToProps)(GeneratorForm);

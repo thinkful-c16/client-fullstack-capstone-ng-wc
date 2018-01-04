@@ -79,11 +79,14 @@ export const reducer = (state = initialState, action) => {
   }
   //might have issues with the activeCloud not resetting
   if(action.type === GENERATE_CLOUD_SUCCESS){
-    return Object.assign({}, state.activeCloud, {
+    return Object.assign({}, state, {
+      activeCloud: {
       title: action.title,
       words: action.words,
       font: action.font,
       color: action.color
+      },
+      view: 'cloudEdit'
     })
   }
   if(action.type === GENERATE_CLOUD_ERROR){
