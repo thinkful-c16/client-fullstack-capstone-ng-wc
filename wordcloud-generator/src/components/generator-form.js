@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {addCloud} from '../actions';
+import {addCloud, updateCloud} from '../actions';
 
 import './generator-form.css';
+import CloudEdit from './cloud-edit';
 
 export class GeneratorForm extends React.Component {
 
@@ -47,9 +48,17 @@ export class GeneratorForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(addCloud(this.state.title, this.state.text, this.state.words, this.state.font, this.state.color));
-    console.log(this.state);
+
+    if (this.props.view === 'cloudEdit') {
+    this.props.dispatch(updateCloud(this.props.activeCloud.id, this.state.title, this.state.text, this.state.words, this.state.font, this.state.color));
+    console.log('edit');
+    } 
+    else {
+    this.props.dispatch(addCloud( this.state.title, this.state.text, this.state.words, this.state.font, this.state.color));
+    console.log('create');
+    }
   }
+
   render() {
 
     const view = this.props.view;
@@ -123,7 +132,8 @@ export class GeneratorForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  view: state.view
+  view: state.view,
+  activeCloud: state.activeCloud
 });
 
 export default connect(mapStateToProps)(GeneratorForm);
