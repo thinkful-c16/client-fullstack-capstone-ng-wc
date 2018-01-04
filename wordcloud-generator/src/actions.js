@@ -115,9 +115,9 @@ export const fetchClouds = () => dispatch => {
     );
 }
 
-export const fetchSingleCloud = () => dispatch => {
-  dispatch(fetchSingleCloud());
-  return fetch(`${API_BASE_URL}/clouds/:id`)
+export const fetchSingleCloud = (id) => dispatch => {
+  dispatch(fetchSingleCloudRequest());
+  return fetch(`${API_BASE_URL}/clouds/${id}`)
     .then(res => {
       if(!res.ok) {
         throw new Error(res.statusTest);
