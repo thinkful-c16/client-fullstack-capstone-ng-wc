@@ -124,14 +124,21 @@ export class GeneratorForm extends React.Component {
           <label htmlFor="fontColor">Font Color:</label>
           <select onChange={this.handleInputChange} name="fontColor" id="fontColor" size="1" defaultValue={this.props.activeCloud.color}>
             <option value="red">Red</option>
+            <option value="orange">Orange</option>
             <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
             <option value="blue">Blue</option>
+            <option value="purple">Purple</option>
+            <option value="pink">Pink</option>
+            <option value="monochrome">Monochrome</option>
+            <option value="random">Multicolored Random</option>
           </select>
-          <label htmlFor="fontStyle">Font:</label>
+          <label htmlFor="fontStyle">Font Family:</label>
           <select onChange={this.handleInputChange} name="fontStyle" id="fontStyle" size="1" defaultValue={this.props.activeCloud.font}>
-            <option value="Impact">Impact</option>
-            <option value="Arial">Arial</option>
-            <option value="Helvetica">Helvetica</option>
+            <option value="serif">serif</option>
+            <option value="sans-serif">sans-serif</option>
+            <option value="monospace">monospace</option>
+            <option value="cursive">cursive</option>
           </select>
       </div>
       </form>

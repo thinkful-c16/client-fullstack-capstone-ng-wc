@@ -31,8 +31,8 @@ const initialState = {
     title: '',
     text: '',
     words: [],
-    font: 'Impact',
-    color: 'Red',
+    font: 'sans-serif',
+    color: 'random',
     upvotes: 0,
     downvotes: 0
   },
@@ -48,8 +48,8 @@ export const reducer = (state = initialState, action) => {
         title: '',
         text: '',
         words: [],
-        font: 'Impact',
-        color: 'Red',
+        font: 'sans-serif',
+        color: 'random',
         upvotes: 0,
         downvotes: 0
       }
@@ -114,8 +114,8 @@ export const reducer = (state = initialState, action) => {
         title: '',
         text: '',
         words: [],
-        font: 'Impact',
-        color: 'Red',
+        font: 'sans-serif',
+        color: 'random',
         upvotes: 0,
         downvotes: 0
       }

@@ -19,22 +19,27 @@ export class Wordcloud extends React.Component {
         const deduped = [...new Set(this.props.activeCloud.words)];
 
         const words = deduped.map((word, index) => (
-                <div key={index} >
+                <div key={index}>
                     {word}
                 </div>
           ));
 
+        const cloudFontStyle = {
+            fontFamily: this.props.activeCloud.font
+        }
+
         return (
             <div className="word-cloud-outer">
-                <div className='word-cloud-inner'>
+                <div className='word-cloud-inner' style={cloudFontStyle}>
                     <TagCloud 
                         className="tag-cloud"
                         style={{
-                        fontFamily: 'sans-serif',
                         fontSize: 30,
                         fontWeight: 'bold',
                         fontStyle: 'italic',
-                        color: () => randomColor(),
+                        color: () => randomColor({
+                            hue: this.props.activeCloud.color
+                        }),
                         padding: 5
                         }}>
                         {words}
