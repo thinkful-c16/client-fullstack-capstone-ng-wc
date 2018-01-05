@@ -196,7 +196,6 @@ export const addCloud = (title, text, words, font, color) => dispatch => {
 }
 
 export const upVoteCloud = (id, upvotes) => dispatch => {
-  console.log('hello world')
   dispatch(upVoteRequest());
   return fetch(`${API_BASE_URL}/clouds/${id}/upvote`, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -212,7 +211,7 @@ export const upVoteCloud = (id, upvotes) => dispatch => {
   }).then(data => {
     console.log('upvote data:', data)
       dispatch(upVoteSuccess(data.upvotes));
-      dispatch(fetchSingleCloud(data.id))}
+      dispatch(fetchSingleCloud(data._id))}
     ).catch(err => {
       console.log(err)
       dispatch(upVoteError(err))}
@@ -235,9 +234,8 @@ export const downVoteCloud = (id, downvotes) => dispatch => {
     }
     return res.json();
   }).then(data => {
-      console.log('downvote data:', data);
       dispatch(downVoteSuccess(data.downvotes));
-      dispatch(fetchSingleCloud(data.id))}
+      dispatch(fetchSingleCloud(data._id))}
     ).catch(err => 
       dispatch(downVoteError(err))
     );

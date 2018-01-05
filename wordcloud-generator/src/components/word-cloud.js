@@ -46,7 +46,7 @@ export class Wordcloud extends React.Component {
                             </button>
                             <div>
                                 <span>{this.props.activeCloud.upvotes}</span> <a onClick={() => this.props.dispatch(upVoteCloud(this.props.activeCloud.id, this.props.activeCloud.upvotes))} href="#thumbsUp" className="thumbs-up"><i className="fa fa-thumbs-up" aria-hidden="true"></i></a>
-                                <span>{this.props.activeCloud.upvotes}</span> <a onClick={() => this.props.dispatch(downVoteCloud(this.props.activeCloud.id, this.props.activeCloud.downvotes))} href="#thumbsDown" className="thumbs-down"><i className="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                                <span>{this.props.activeCloud.downvotes}</span> <a onClick={() => this.props.dispatch(downVoteCloud(this.props.activeCloud.id, this.props.activeCloud.downvotes))} href="#thumbsDown" className="thumbs-down"><i className="fa fa-thumbs-down" aria-hidden="true"></i></a>
                             </div>
                         </form>
                      </div>}

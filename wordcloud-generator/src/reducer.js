@@ -69,7 +69,7 @@ export const reducer = (state = initialState, action) => {
   else if(action.type === UP_VOTE_SUCCESS){
     return Object.assign({}, state, {
       activeCloud: {
-        upvotes: this.upvotes
+        upvotes: action.upvotes
         }
     })
   }
@@ -86,8 +86,10 @@ export const reducer = (state = initialState, action) => {
     })
   }
   else if(action.type === DOWN_VOTE_SUCCESS){
-    return Object.assign({}, state.activeCloud, {
-      downvotes: action.downvotes
+    return Object.assign({}, state, {
+      activeCloud: {
+        downvotes: action.downvotes
+        }
     })
   }
   else if(action.type === DOWN_VOTE_ERROR){
