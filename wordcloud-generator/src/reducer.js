@@ -67,8 +67,10 @@ export const reducer = (state = initialState, action) => {
     })
   }
   else if(action.type === UP_VOTE_SUCCESS){
-    return Object.assign({}, state.activeCloud, {
-      upvotes: action.upvotes
+    return Object.assign({}, state, {
+      activeCloud: {
+        upvotes: this.upvotes
+        }
     })
   }
   else if(action.type === UP_VOTE_ERROR){

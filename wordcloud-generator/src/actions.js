@@ -210,8 +210,9 @@ export const upVoteCloud = (id, upvotes) => dispatch => {
     console.log(res);
     return res.json();
   }).then(data => {
-    console.log(data)
-      dispatch(upVoteSuccess(data.upvotes))}
+    console.log('upvote data:', data)
+      dispatch(upVoteSuccess(data.upvotes));
+      dispatch(fetchSingleCloud(data.id))}
     ).catch(err => {
       console.log(err)
       dispatch(upVoteError(err))}
@@ -233,8 +234,10 @@ export const downVoteCloud = (id, downvotes) => dispatch => {
       throw new Error(res.statusTest)
     }
     return res.json();
-  }).then(data => 
-      dispatch(downVoteSuccess(data.downvotes))
+  }).then(data => {
+      console.log('downvote data:', data);
+      dispatch(downVoteSuccess(data.downvotes));
+      dispatch(fetchSingleCloud(data.id))}
     ).catch(err => 
       dispatch(downVoteError(err))
     );
