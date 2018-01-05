@@ -109,7 +109,16 @@ export const reducer = (state = initialState, action) => {
       loading: false,
       error: null,
       clouds: action.clouds,
-      view: 'library'
+      view: 'library',
+      activeCloud: {
+        title: '',
+        text: '',
+        words: [],
+        font: 'Impact',
+        color: 'Red',
+        upvotes: 0,
+        downvotes: 0
+      }
     })
   }
   else if(action.type === FETCH_CLOUDS_ERROR){
