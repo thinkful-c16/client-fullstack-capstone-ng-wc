@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import GeneratorForm from './generator-form';
 import {goEdit, downVoteCloud, upVoteCloud} from '../actions';
 import TagCloud from 'react-tag-cloud';
 import randomColor from 'randomcolor';
@@ -48,6 +49,9 @@ export class Wordcloud extends React.Component {
                                 <span>{this.props.activeCloud.upvotes}</span> <a onClick={() => this.props.dispatch(downVoteCloud(this.props.activeCloud.id, this.props.activeCloud.downvotes--))} href="#thumbsDown" className="thumbs-down"><i className="fa fa-thumbs-down" aria-hidden="true"></i></a>
                             </div>
                         </form>
+                     </div>}
+                     {this.props.view === 'cloudEdit' && <div className="edit-form">
+                        <GeneratorForm />
                      </div>}
                 </div>
             </div>

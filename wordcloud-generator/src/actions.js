@@ -267,17 +267,19 @@ export const updateCloud = (id, title, text, words, font, color) => dispatch => 
 
 export const removeCloud = (id) => dispatch => {
   dispatch(deleteCloudRequest());
-  return fetch(`${API_BASE_URL}/clouds/:id`, {
+  return fetch(`${API_BASE_URL}/clouds/${id}`, {
     method: `DELETE`
   })
     .then(res => {
       if(!res.ok) {
         throw new Error(res.statusTest)
       }
-      return res.json();
-    }).then(data => 
-        dispatch(deleteCloudSuccess(data))
-      ).catch(err => 
+      dispatch(fetchClouds);
+    }).catch(err => 
         dispatch(deleteCloudError(err))
       );
 }
+
+// .then(data => 
+//   dispatch(deleteCloudSuccess(data))
+// )

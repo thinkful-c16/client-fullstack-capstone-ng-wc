@@ -43,7 +43,16 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   if(action.type === GO_HOME){
     return Object.assign({}, state, {
-      view: 'home'
+      view: 'home',
+      activeCloud: {
+        title: '',
+        text: '',
+        words: [],
+        font: '',
+        color: '',
+        upvotes: 0,
+        downvotes: 0
+      }
     })
   }
   else if(action.type === GO_EDIT){
@@ -180,12 +189,12 @@ export const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       loading: false,
       error: null,
-      view: 'library'
     })
   }
   else if(action.type === DELETE_CLOUD_SUCCESS){
     return Object.assign({}, state, {
-      clouds: action.clouds
+      clouds: action.clouds,
+      view: 'library'
     })
   }
   else if(action.type === DELETE_CLOUD_ERROR){

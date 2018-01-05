@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Wordcloud from './word-cloud';
-import GeneratorForm from './generator-form';
 
 export default function CloudEdit(props) {
   return (
@@ -9,7 +8,6 @@ export default function CloudEdit(props) {
       <div className="cloud-container">
         <Wordcloud />
       </div>
-      <GeneratorForm/>
     </section>
   );
 }

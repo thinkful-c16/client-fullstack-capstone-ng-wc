@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {addCloud, updateCloud} from '../actions';
+import {addCloud, updateCloud, removeCloud} from '../actions';
 
 import './generator-form.css';
-import CloudEdit from './cloud-edit';
 
 export class GeneratorForm extends React.Component {
 
@@ -59,6 +58,12 @@ export class GeneratorForm extends React.Component {
     }
   }
 
+  onDelete(event) {
+    event.preventDefault();
+    this.props.dispatch(removeCloud(this.props.activeCloud.id));
+    console.log('delete');
+  }
+
   render() {
 
     const view = this.props.view;
@@ -71,7 +76,7 @@ export class GeneratorForm extends React.Component {
                 <button type="submit" name="submit" id="regenerateWordCloud" className="button">
                     Regenerate Word Cloud
                 </button>
-                <button type="submit" name="submit" id="deleteWordCloud" className="button">
+                <button type="submit" name="submit" id="deleteWordCloud" className="button" onClick={(e) => this.onDelete(e)}>
                     Delete Word Cloud
                 </button>
               </div>
@@ -95,6 +100,7 @@ export class GeneratorForm extends React.Component {
           name="textInput"
           id="textInput"
           className="textArea"
+          defaultValue={this.props.activeCloud.text}
           required>
           </textarea>
         </div>
@@ -109,18 +115,19 @@ export class GeneratorForm extends React.Component {
           name="cloudTitle"
           id="cloudTitle"
           className="text"
+          defaultValue={this.props.activeCloud.title}
           required
           />
         </div>
         <div>
           <label htmlFor="fontColor">Font Color:</label>
-          <select onChange={this.handleInputChange} name="fontColor" id="fontColor" size="1">
+          <select onChange={this.handleInputChange} name="fontColor" id="fontColor" size="1" defaultValue={this.props.activeCloud.color}>
             <option value="red">Red</option>
             <option value="yellow">Yellow</option>
             <option value="blue">Blue</option>
           </select>
           <label htmlFor="fontStyle">Font:</label>
-          <select onChange={this.handleInputChange} name="fontStyle" id="fontStyle" size="1">
+          <select onChange={this.handleInputChange} name="fontStyle" id="fontStyle" size="1" defaultValue={this.props.activeCloud.font}>
             <option value="Impact">Impact</option>
             <option value="Arial">Arial</option>
             <option value="Helvetica">Helvetica</option>
