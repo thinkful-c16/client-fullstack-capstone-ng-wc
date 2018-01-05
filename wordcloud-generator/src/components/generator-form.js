@@ -10,11 +10,11 @@ export class GeneratorForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
-      words: [],
-      title: '',
-      font: 'Impact',
-      color: 'Red'
+      text: this.props.activeCloud.text,
+      words: this.props.activeCloud.words,
+      title: this.props.activeCloud.title,
+      font: this.props.activeCloud.font,
+      color: this.props.activeCloud.color
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,7 +25,7 @@ export class GeneratorForm extends React.Component {
     if (target.name === 'textInput') {
       this.setState({
         text: target.value,
-        words: target.value.split(/\ |\.|\?|\!|\-\(|\)|\&|\,/)
+        words: target.value.split(/\ |\.|\?|\!|\-|\(|\)|\&|\,/)
       })
     }
     else if (target.name === 'cloudTitle') {
@@ -101,7 +101,8 @@ export class GeneratorForm extends React.Component {
           id="textInput"
           className="textArea"
           defaultValue={this.props.activeCloud.text}
-          required>
+          required
+          ref={(input) => { this.textInput = input; }}>
           </textarea>
         </div>
         <div>
@@ -117,7 +118,7 @@ export class GeneratorForm extends React.Component {
           className="text"
           defaultValue={this.props.activeCloud.title}
           required
-          />
+          ref={(input) => { this.titleInput = input; }}/>
         </div>
         <div>
           <label htmlFor="fontColor">Font Color:</label>

@@ -40,8 +40,9 @@ export const generateCloudRequest = () => ({
 })
 
 export const GENERATE_CLOUD_SUCCESS = 'GENERATE_CLOUD_SUCCESS';
-export const generateCloudSuccess =  (title, text, words, font, color) => ({  
+export const generateCloudSuccess =  (id, title, text, words, font, color) => ({  
   type: GENERATE_CLOUD_SUCCESS,
+  id,
   title,
   text,
   words,
@@ -65,6 +66,7 @@ export const updateCloudSuccess =  (data) => {
   console.log('Made it to update cloud success');
   return {
     type: UPDATE_CLOUD_SUCCESS,
+    id: data._id,
     title: data.title,
     text: data.text,
     words: data.words,
@@ -189,7 +191,7 @@ export const addCloud = (title, text, words, font, color) => dispatch => {
       }
       return res.json();
     }).then(data => 
-        dispatch(generateCloudSuccess(data.title, data.text, data.words, data.font, data.color))
+        dispatch(generateCloudSuccess(data.id, data.title, data.text, data.words, data.font, data.color))
       ).catch(err => 
         dispatch(generateCloudError(err))
       );

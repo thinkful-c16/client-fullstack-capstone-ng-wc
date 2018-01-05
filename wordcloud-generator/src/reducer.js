@@ -31,8 +31,8 @@ const initialState = {
     title: '',
     text: '',
     words: [],
-    font: '',
-    color: '',
+    font: 'Impact',
+    color: 'Red',
     upvotes: 0,
     downvotes: 0
   },
@@ -48,8 +48,8 @@ export const reducer = (state = initialState, action) => {
         title: '',
         text: '',
         words: [],
-        font: '',
-        color: '',
+        font: 'Impact',
+        color: 'Red',
         upvotes: 0,
         downvotes: 0
       }
@@ -149,6 +149,7 @@ export const reducer = (state = initialState, action) => {
 
     return Object.assign({}, state, {
       activeCloud: {
+      id: action.id,
       title: action.title,
       text: action.text,
       words: action.words,
@@ -175,6 +176,7 @@ export const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       view: 'focus',
       activeCloud: {
+        id: action.id,
         title: action.title,
         text: action.text,
         words: action.words,
