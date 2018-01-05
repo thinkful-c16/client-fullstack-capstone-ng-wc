@@ -8,9 +8,10 @@ export default function LibraryView(props) {
       <div className="library-list">
         <LibraryList />
       </div>
-      <div className="library-carousel">
-        <LibraryCarousel />
-      </div>
     </section>
   );
 }
+
+// <div className="library-carousel">
+// <LibraryCarousel />
+// </div>
