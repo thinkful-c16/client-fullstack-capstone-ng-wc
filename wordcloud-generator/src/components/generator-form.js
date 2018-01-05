@@ -76,7 +76,7 @@ export class GeneratorForm extends React.Component {
                 <button type="submit" name="submit" id="regenerateWordCloud" className="button">
                     Regenerate Word Cloud
                 </button>
-                <button type="submit" name="submit" id="deleteWordCloud" className="button" onClick={(e) => this.onDelete(e)}>
+                <button type="button" name="submit" id="deleteWordCloud" className="button" onClick={(e) => this.onDelete(e)}>
                     Delete Word Cloud
                 </button>
               </div>

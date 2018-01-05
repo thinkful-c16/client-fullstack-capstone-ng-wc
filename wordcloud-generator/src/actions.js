@@ -275,7 +275,7 @@ export const removeCloud = (id) => dispatch => {
       if(!res.ok) {
         throw new Error(res.statusTest)
       }
-      dispatch(fetchClouds);
+      dispatch(fetchClouds());
     }).catch(err => 
         dispatch(deleteCloudError(err))
       );
